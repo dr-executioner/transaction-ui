@@ -7,11 +7,12 @@ import { DynamicInput } from "./DynamicInput";
 import { HealthCheck } from "./HealthCheck";
 import { TransactionLookup } from "./TransactionCheck";
 import { useTransactionContext } from "../context/transaction";
+import type { FormState } from "../types/index.types";
 
 
 export default function TransactionForm() {
     const { submitTransaction, loading, error, success } = useTransactions();
-    const [form, setForm] = useState(
+    const [form, setForm] = useState<FormState | any>(
         FORM_FIELDS_CONFIG.reduce((acc, field) => {
             if (field.type === "select" && field.options) {
                 acc[field.name] = field.options[0].value;
@@ -25,8 +26,9 @@ export default function TransactionForm() {
 
     const { id: generatedId, setId } = useTransactionContext()
 
-    const onChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) =>
+    const onChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         setForm({ ...form, [e.target.name]: e.target.value });
+    }
 
     const onSubmit = (e: FormEvent) => {
         e.preventDefault();
@@ -39,12 +41,11 @@ export default function TransactionForm() {
             amount: parseFloat(form.amount),
         };
 
-        console.log("Paylaod", payload)
         submitTransaction(payload);
     };
 
     return (
-        <div className="min-h-screen bg-linear-to-br from-slate-50 via-blue-50 to-indigo-50 p-4 md:p-8">
+        <div className="min-h-screen bg-linear-to-br from-slate-50 via-blue-50 to-indigo-50 p-4 md:p-8 ">
             <div className="max-w-7xl mx-auto">
                 {/* Header */}
                 <div className="text-center mb-8 animate-fade-in">
@@ -74,7 +75,7 @@ export default function TransactionForm() {
 
                     {/* Transaction Form - Full width */}
                     <div className="max-w-2xl mx-auto">
-                        <div className="bg-white rounded-3xl shadow-xl p-8 space-y-6 relative overflow-hidden">
+                        <div className="bg-white rounded-md border-2 border-slate-200 shadow-xl p-8 space-y-6 relative overflow-hidden">
                             <div className="absolute top-0 right-0 w-40 h-40 bg-linear-to-br from-blue-100 to-indigo-100 rounded-full -mr-20 -mt-20 opacity-50"></div>
                             <div className="absolute bottom-0 left-0 w-32 h-32 bg-gradient-to-tr from-purple-100 to-pink-100 rounded-full -ml-16 -mb-16 opacity-50"></div>
 
@@ -90,7 +91,7 @@ export default function TransactionForm() {
                                 </div>
 
                                 <div className="space-y-5">
-                                    {generatedId && (
+                                    {!error && generatedId && (
                                         <div className="p-4 bg-blue-50 border-2 border-blue-200 rounded-xl">
                                             <div className="flex items-center gap-2 text-sm">
                                                 <Hash className="w-4 h-4 text-blue-600" />

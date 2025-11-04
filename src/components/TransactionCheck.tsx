@@ -20,7 +20,7 @@ export const TransactionLookup = () => {
     };
 
     return (
-        <div className="bg-white rounded-3xl shadow-xl p-6 relative overflow-hidden">
+        <div className="bg-white rounded-md border-2 border-slate-200 shadow-xl p-6 relative overflow-hidden">
             <div className="absolute top-0 right-0 w-32 h-32 bg-linear-to-br from-purple-100 to-indigo-100 rounded-full -mr-16 -mt-16 opacity-50"></div>
 
             <div className="relative">

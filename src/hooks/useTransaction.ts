@@ -8,17 +8,31 @@ export function useTransactions() {
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const submitTransaction = async (
-    data: any
-  ) => {
+  const submitTransaction = async (data: Transaction) => {
     setLoading(true);
     setError(null);
+
+    if (!data.source_account) {
+      setError("Source is Required");
+      setLoading(false);
+      return;
+    }
+    if (!data.destination_account) {
+      setError("Destination is Required");
+      setLoading(false);
+      return;
+    }
+    if (!data.amount || data.amount === Number("NaN")) {
+      setError("Amount is Required");
+      setLoading(false);
+      return;
+    }
     try {
       await api.postTransaction(data);
-      setSuccess(true)
+      setSuccess(true);
     } catch (err) {
       setError("Failed to submit transaction");
-      setSuccess(false)
+      setSuccess(false);
     } finally {
       setLoading(false);
     }

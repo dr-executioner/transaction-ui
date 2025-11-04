@@ -11,5 +11,12 @@ export interface Transaction {
 
 export interface HealthResponse {
   current_time : string
-  status : "HEALTHY" | any
+  status : "HEALTHY" | null
+}
+
+export interface FormState {
+  amount: string;
+  currency: string;
+  destination_account: string;
+  source_account: string;
 }
