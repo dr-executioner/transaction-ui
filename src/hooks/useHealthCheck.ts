@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { useState } from "react";
 import * as api from "../api/healthCheck.api";
 import type { HealthResponse } from "../types/index.types";

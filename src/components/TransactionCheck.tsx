@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Activity, CheckCircle2, Clock, Search } from "lucide-react";
 import { useState } from "react";
 import { useTransactions } from "../hooks/useTransaction";
@@ -101,7 +102,7 @@ export const TransactionLookup = () => {
                             </div>
                         </div>
 
-                        <div className="p-4 bg-gradient-to-r from-indigo-50 to-purple-50 rounded-xl border-2 border-indigo-200">
+                        <div className="p-4 bg-linear-to-r from-indigo-50 to-purple-50 rounded-xl border-2 border-indigo-200">
                             <div className="text-xs text-gray-600 mb-1">Amount</div>
                             <div className="text-2xl font-bold text-gray-900">
                                 {transaction.currency} {transaction.amount.toLocaleString()}

@@ -6,7 +6,7 @@ export interface Transaction {
   currency: string;
   status: string;
   created_at: string;
-  processed_at?: string | null;
+  processed_at: string;
 }
 
 export interface HealthResponse {

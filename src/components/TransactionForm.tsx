@@ -1,4 +1,4 @@
-import { useState, FormEvent } from "react";
+import { useState, type FormEvent } from "react";
 import { ArrowRightLeft, Send, CheckCircle2, Hash, TrendingUp } from "lucide-react";
 import { useTransactions } from "../hooks/useTransaction";
 import { FORM_FIELDS_CONFIG } from "../constants/constants";
@@ -12,6 +12,7 @@ import type { FormState } from "../types/index.types";
 
 export default function TransactionForm() {
     const { submitTransaction, loading, error, success } = useTransactions();
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const [form, setForm] = useState<FormState | any>(
         FORM_FIELDS_CONFIG.reduce((acc, field) => {
             if (field.type === "select" && field.options) {
