@@ -1,4 +1,4 @@
-import { Building2, IndianRupee, Wallet } from "lucide-react";
+import { Building2, Wallet } from "lucide-react";
 
 export const FORM_FIELDS_CONFIG = [
   {
@@ -24,7 +24,7 @@ export const FORM_FIELDS_CONFIG = [
     label: "Amount",
     type: "number",
     placeholder: "0.00",
-    icon: IndianRupee,
+    iconDynamic: true,
     required: true,
     step: "0.01",
     colSpan: "2/3",

@@ -1,5 +1,7 @@
-export const DynamicInput = ({ field, value, onChange, onFocus, onBlur, focusedField }: any) => {
-    const Icon = field.icon;
+import { generateSymbol } from "../utils/helper";
+
+export const DynamicInput = ({ field, value, onChange, onFocus, onBlur, focusedField, currencyValue }: any) => {
+    const Icon = field.iconDynamic ? generateSymbol(currencyValue) : field.icon;;
     const isFocused = focusedField === field.name;
 
     if (field.type === "select") {
