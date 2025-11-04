@@ -8,6 +8,7 @@ import { HealthCheck } from "./HealthCheck";
 import { TransactionLookup } from "./TransactionCheck";
 import { useTransactionContext } from "../context/transaction";
 import type { FormState } from "../types/index.types";
+import { CopyButton } from "./CopyButton";
 
 
 export default function TransactionForm() {
@@ -66,7 +67,6 @@ export default function TransactionForm() {
                             <div className="lg:col-span-1">
                                 <HealthCheck />
                             </div>
-
                             {/* Transaction Lookup - Spans 2 columns */}
                             <div className="lg:col-span-1">
                                 <TransactionLookup />
@@ -78,7 +78,7 @@ export default function TransactionForm() {
                     <div className="max-w-2xl mx-auto">
                         <div className="bg-white rounded-md border-2 border-slate-200 shadow-xl p-8 space-y-6 relative overflow-hidden">
                             <div className="absolute top-0 right-0 w-40 h-40 bg-linear-to-br from-blue-100 to-indigo-100 rounded-full -mr-20 -mt-20 opacity-50"></div>
-                            <div className="absolute bottom-0 left-0 w-32 h-32 bg-gradient-to-tr from-purple-100 to-pink-100 rounded-full -ml-16 -mb-16 opacity-50"></div>
+                            <div className="absolute bottom-0 left-0 w-32 h-32 bg-linear-to-tr from-purple-100 to-pink-100 rounded-full -ml-16 -mb-16 opacity-50"></div>
 
                             <div className="relative">
                                 <div className="flex items-center gap-3 mb-6">
@@ -92,12 +92,13 @@ export default function TransactionForm() {
                                 </div>
 
                                 <div className="space-y-5">
-                                    {!error && generatedId && (
+                                    {!error && generatedId && success && (
                                         <div className="p-4 bg-blue-50 border-2 border-blue-200 rounded-xl">
                                             <div className="flex items-center gap-2 text-sm">
                                                 <Hash className="w-4 h-4 text-blue-600" />
                                                 <span className="text-gray-600">Transaction ID:</span>
                                                 <span className="font-mono font-semibold text-blue-600">{generatedId}</span>
+                                                <CopyButton text={generatedId} />
                                             </div>
                                         </div>
                                     )}
